@@ -190,6 +190,24 @@ calculate_price_per_unit <- function(item, standard_unit, non_standard_unit, uni
     non_standard_unit == "sachet" & item == "bleach" ~ price / 2 * 4,  # sachet of 2 grams
     non_standard_unit == "bundle_large" & item == "enset" ~ price / 10,  # bundle_large = 10 kg
     non_standard_unit == "cup_glass" & item == "cooking_oil" ~ price / 250 * 1000,
+    # updating the function
+    non_standard_unit == "3_ltr" & item == "cooking_oil" ~ price / 3,
+    non_standard_unit == "butule" & item == "cooking_oil" ~ price * 2,
+    non_standard_unit == "Jercan" & item == "cooking_oil" ~ price / 20,
+    non_standard_unit == "cup_glass" & item %in% c("maize", "teff") ~ price * 4,
+    non_standard_unit == "100_kg" & item == "maize" ~ price / 100,
+    non_standard_unit == "sachet" & item %in% c("maize", "sorghum", "wheat") ~ price / 20,
+    non_standard_unit == "25_kg" & item == "rice" ~ price / 25,
+    non_standard_unit == "bundle_large" & item == "rice" ~ price / 25,
+    non_standard_unit == "cup_glass" & item == "sorghum" ~ price * 4,
+    non_standard_unit == "Quintal" & item == "sorghum" ~ price / 100,
+    non_standard_unit == "50_kg" & item == "teff" ~ price / 50,
+    non_standard_unit == "juqufo_tammaandho" & item == "vegetables_leafy_darkgreen" ~ price * 4,
+    non_standard_unit == "sachet" & item == "bath_soap" ~ price * 125,
+    non_standard_unit == "jug" & item %in% c("cooking_oil", "maize") ~ price,
+    non_standard_unit == "tin" & item == "rice" ~ price / 25,
+    non_standard_unit == "millilitre" & item == "bleach" ~ price,
+    non_standard_unit == "gram" & item == "cooking_oil" ~ price,
     !is.na(standard_unit) & test ~ -1,
     TRUE ~ NA_real_)
 }
